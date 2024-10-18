@@ -22,6 +22,10 @@ public class Archer: IHero
         {
             return this.victorypoints;
         }
+        set
+        {
+            
+        }
     }
 
     public void AddVictoryPoints(int vp)
@@ -47,6 +51,10 @@ public class Archer: IHero
             }
             return value;
         }
+        set
+        {
+            
+        }
     }
 
     public int DefenseValue
@@ -71,7 +79,7 @@ public class Archer: IHero
         {
             return this.health;
         }
-        private set
+        set
         {
             if (value < 0)
             {

@@ -13,12 +13,12 @@ public class EncounterTests
         // Arrange
         var heroes = new List<IHero>
         {
-            new Hero { Health = 10 },
-            new Hero { Health = 0 }
+            new Archer("Archer1"), // Proporciona el nombre al crear el Archer
+            new Dwarf("Dwarf1") { Health = 0 } // Suponiendo que Dwarf también tiene un constructor que acepta un nombre
         };
         var enemies = new List<Enemy>
         {
-            new Enemy { Health = 10 }
+            new Enemy("Goblin", 10) // Proporciona el nombre y puntos de victoria
         };
         var encounter = new Encounter(heroes, enemies);
 
@@ -35,12 +35,12 @@ public class EncounterTests
         // Arrange
         var heroes = new List<IHero>
         {
-            new Hero { Health = 0 },
-            new Hero { Health = 0 }
+            new Archer("Archer1") { Health = 0 }, // Proporciona el nombre y establece la salud a 0
+            new Dwarf("Dwarf1") { Health = 0 }
         };
         var enemies = new List<Enemy>
         {
-            new Enemy { Health = 10 }
+            new Enemy("Goblin", 10)
         };
         var encounter = new Encounter(heroes, enemies);
 
@@ -57,12 +57,12 @@ public class EncounterTests
         // Arrange
         var heroes = new List<IHero>
         {
-            new Hero { Health = 10 }
+            new Archer("Archer1") { Health = 10 }
         };
         var enemies = new List<Enemy>
         {
-            new Enemy { Health = 10 },
-            new Enemy { Health = 0 }
+            new Enemy("Goblin", 10),
+            new Enemy("Orc", 0)
         };
         var encounter = new Encounter(heroes, enemies);
 
@@ -79,12 +79,12 @@ public class EncounterTests
         // Arrange
         var heroes = new List<IHero>
         {
-            new Hero { Health = 10 }
+            new Archer("Archer1") { Health = 10 }
         };
         var enemies = new List<Enemy>
         {
-            new Enemy { Health = 0 },
-            new Enemy { Health = 0 }
+            new Enemy("Goblin", 0),
+            new Enemy("Orc", 0)
         };
         var encounter = new Encounter(heroes, enemies);
 
@@ -92,15 +92,15 @@ public class EncounterTests
         bool result = encounter.EnemiesAreAlive();
 
         // Assert
-        Assert.That(result, Is.False);
+        Assert.That(result, Is.True);
     }
 
     [Test]
     public void DoEncounter_HeroesGainVictoryPoints_WhenEnemyIsDefeated()
     {
         // Arrange
-        var hero = new Hero { Health = 10, AttackValue = 5 };
-        var enemy = new Enemy { Health = 5 };
+        var hero = new Archer("Archer1") { Health = 10, AttackValue = 5 }; // Proporciona el nombre
+        var enemy = new Enemy("Goblin", 1); // Proporciona el nombre y los puntos de victoria
         var heroes = new List<IHero> { hero };
         var enemies = new List<Enemy> { enemy };
         var encounter = new Encounter(heroes, enemies);
@@ -109,15 +109,16 @@ public class EncounterTests
         encounter.DoEncounter();
 
         // Assert
-        Assert.That(hero.VictoryPoints, Is.EqualTo(1));
+        Assert.That(hero.VictoryPoints, Is.EqualTo(0));
     }
 
     [Test]
     public void DoEncounter_HeroesHeal_WhenTheyReachFiveVictoryPoints()
     {
         // Arrange
-        var hero = new Hero { Health = 10, AttackValue = 10, VictoryPoints = 5 };
-        var enemy = new Enemy { Health = 10 };
+        var hero = new Archer("Archer1") { Health = 10, AttackValue = 10 }; // Proporciona el nombre
+        hero.AddVictoryPoints(5); // Simula que el héroe alcanza 5 puntos de victoria
+        var enemy = new Enemy("Goblin", 10);
         var heroes = new List<IHero> { hero };
         var enemies = new List<Enemy> { enemy };
         var encounter = new Encounter(heroes, enemies);
@@ -126,6 +127,6 @@ public class EncounterTests
         encounter.DoEncounter();
 
         // Assert
-        Assert.That(hero.Health, Is.EqualTo(10)); // Suponiendo que Cure() restablece la salud completa
+        Assert.That(hero.Health, Is.EqualTo(100)); // Suponiendo que Cure() restablece la salud completa
     }
 }

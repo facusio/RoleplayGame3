@@ -23,7 +23,7 @@ public class Encounter
         }
     }
 
-    private bool HeroesAreAlive()
+    public bool HeroesAreAlive()
     {
         foreach (IHero hero in heroes)
         {
@@ -36,7 +36,7 @@ public class Encounter
         return false;
     }
 
-    private bool EnemiesAreAlive()
+    public bool EnemiesAreAlive()
     {
         foreach (Enemy enemy in enemies)
         {

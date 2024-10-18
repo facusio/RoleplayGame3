@@ -12,7 +12,7 @@ public class Enemy : ICharacter
         this.vp = vp;
         this.AddItem(new Sword());
     }
-    
+
     public string Name { get; set; }
 
     public int VP
@@ -61,7 +61,7 @@ public class Enemy : ICharacter
         {
             return this.health;
         }
-        private set
+        set
         {
             if (value < 0)
             {

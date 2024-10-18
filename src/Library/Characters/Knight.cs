@@ -73,7 +73,7 @@ public class Knight: IHero
         {
             return this.health;
         }
-        private set
+        set
         {
             if (value < 0)
             {

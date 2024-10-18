@@ -71,7 +71,7 @@ public class Dwarf: IHero
         {
             return this.health;
         }
-        private set
+        set
         {
             if (value < 0)
             {
