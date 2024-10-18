@@ -5,7 +5,6 @@ public class Dwarf: IHero
 {
     private int health = 100;
     private int victorypoints = 0;
-
     private List<IItem> items = new List<IItem>();
 
     public Dwarf(string name)

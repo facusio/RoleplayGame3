@@ -1,22 +1,37 @@
 using System.Collections.Generic;
 namespace Ucu.Poo.RoleplayGame;
 
-public class Wizard: IMagicCharacter
+public class Wizard: IHero, IMagicCharacter
 {
     private int health = 100;
-
-    private List<IItem> items = new List<IItem>();
-
+    private int victorypoints = 0;
+    private List<IItem> items = new List<IItem>(); 
     private List<IMagicalItem> magicalItems = new List<IMagicalItem>();
 
     public Wizard(string name)
     {
         this.Name = name;
-
         this.AddItem(new Staff());
     }
 
     public string Name { get; set; }
+
+    public int VictoryPoints
+    {
+        get
+        {
+            return this.victorypoints;
+        }
+    }
+
+    public void AddVictoryPoints(int vp)
+    {
+        this.victorypoints += vp;
+        if (this.victorypoints >= 5)
+        {
+            this.Cure();
+        }
+    }
 
     public int AttackValue
     {

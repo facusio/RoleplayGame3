@@ -6,7 +6,6 @@ namespace LibraryTests;
 public class KnightTests
 {
     [Test]
-
     public void TestKnight()
     {
         Sword coppersword = new Sword();
