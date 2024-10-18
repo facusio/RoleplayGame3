@@ -72,7 +72,14 @@ public class Wizard: IMagicCharacter
         }
         private set
         {
-            this.health = value < 0 ? 0 : value;
+            if (value < 0)
+            {
+                this.health = 0;
+            }
+            else
+            {
+                this.health = value;
+            }
         }
     }
 

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 namespace Ucu.Poo.RoleplayGame;
 
-public class Knight: ICharacter
+public class Knight: IHero
 {
     private int health = 100;
-
+    private int victorypoints = 0;
     private List<IItem> items = new List<IItem>();
 
     public Knight(string name)
@@ -17,6 +17,23 @@ public class Knight: ICharacter
     }
 
     public string Name { get; set; }
+
+    public int VictoryPoints
+    {
+        get
+        {
+            return this.victorypoints;
+        }
+    }
+
+    public void AddVictoryPoints(int vp)
+    {
+        this.victorypoints += vp;
+        if (this.victorypoints >= 5)
+        {
+            this.Cure();
+        }
+    }
 
     public int AttackValue
     {
@@ -58,7 +75,14 @@ public class Knight: ICharacter
         }
         private set
         {
-            this.health = value < 0 ? 0 : value;
+            if (value < 0)
+            {
+                this.health = 0;
+            }
+            else
+            {
+                this.health = value;
+            }
         }
     }
 

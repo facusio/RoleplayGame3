@@ -1,35 +1,25 @@
-using System.Collections.Generic;
-namespace Ucu.Poo.RoleplayGame;
+﻿namespace Ucu.Poo.RoleplayGame;
 
-public class Archer: IHero
+public class Enemy : ICharacter
 {
     private int health = 100;
-    private int victorypoints = 0;
+    private int vp;
     private List<IItem> items = new List<IItem>();
 
-    public Archer(string name)
+    public Enemy(string name, int vp)
     {
         this.Name = name;
-        this.AddItem(new Bow());
-        this.AddItem(new Helmet());
+        this.vp = vp;
+        this.AddItem(new Sword());
     }
-
+    
     public string Name { get; set; }
 
-    public int VictoryPoints
+    public int VP
     {
         get
         {
-            return this.victorypoints;
-        }
-    }
-
-    public void AddVictoryPoints(int vp)
-    {
-        this.victorypoints += vp;
-        if (this.victorypoints >= 5)
-        {
-            this.Cure();
+            return this.vp;
         }
     }
 
@@ -84,17 +74,17 @@ public class Archer: IHero
         }
     }
 
+    public void Cure()
+    {
+        
+    }
+
     public void ReceiveAttack(int power)
     {
         if (this.DefenseValue < power)
         {
             this.Health -= power - this.DefenseValue;
         }
-    }
-
-    public void Cure()
-    {
-        this.Health = 100;
     }
 
     public void AddItem(IItem item)
