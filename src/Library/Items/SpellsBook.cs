@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Ucu.Poo.RoleplayGame;
 
 public class SpellsBook: IMagicalAttackItem, IMagicalDefenseItem

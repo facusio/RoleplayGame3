@@ -16,5 +16,5 @@ public interface ICharacter
 
     void Cure();
 
-    void ReceiveAttack(int power);
+    void RecieveAttack(int power);
 }

@@ -9,7 +9,7 @@ public class Staff: IAttackItem, IDefenseItem
             return 100;
         }
     }
-
+    
     public int DefenseValue
     {
         get

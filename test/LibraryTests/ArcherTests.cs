@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Library.Characters;
+using NUnit.Framework;
 using Ucu.Poo.RoleplayGame;
 
 namespace LibraryTests;
@@ -28,7 +29,7 @@ public class ArcherTests
 
         // Act
         // Arquero Mágico ataca a Mega Arquero
-        megaarquero.ReceiveAttack(arqueromagico.AttackValue);
+        megaarquero.RecieveAttack(arqueromagico.AttackValue);
 
         // Assert
         Assert.That(megaarquero.Health, Is.EqualTo(100));

@@ -1,14 +1,16 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using Library.Characters;
 using Ucu.Poo.RoleplayGame;
 
 namespace Library;
 
 public class Encounter
 {
-    private List<IHero> heroes;
+    private List<Hero> heroes;
     private List<Enemy> enemies;
 
-    public Encounter(List<IHero> heroes, List<Enemy> enemies)
+    public Encounter(List<Hero> heroes, List<Enemy> enemies)
     {
         this.heroes = heroes;
         this.enemies = enemies;
@@ -25,7 +27,7 @@ public class Encounter
 
     public bool HeroesAreAlive()
     {
-        foreach (IHero hero in heroes)
+        foreach (Hero hero in heroes)
         {
             if (hero.Health > 0)
             {
@@ -50,38 +52,44 @@ public class Encounter
 
     private void EnemiesAttack()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        foreach (Enemy enemy in enemies)
         {
-            Enemy enemy = enemies[i];
-            IHero hero = heroes[i % heroes.Count];
-            if (enemy.Health > 0 && hero.Health > 0)
+            if (enemy.Health > 0)
             {
-                hero.ReceiveAttack(enemy.AttackValue);
+                foreach (Hero hero in heroes)
+                {
+                    if (hero.Health > 0)
+                    {
+                        hero.RecieveAttack(enemy.AttackValue);
+                        return; // Con este return lo que hago es salir del bucle, ya que el enemigo ya ataco una vez.
+                    }
+                }
             }
         }
     }
 
     private void HeroesAttack()
     {
-        for (int i = 0; i < heroes.Count; i++)
+        foreach (Hero hero in heroes)
         {
-            IHero hero = heroes[i];
             if (hero.Health > 0)
             {
-                for (int j = 0; j < enemies.Count; j++)
+                foreach (Enemy enemy in enemies)
                 {
-                    Enemy enemy = enemies[j];
                     if (enemy.Health > 0)
                     {
-                        enemy.ReceiveAttack(hero.AttackValue);
+                        enemy.RecieveAttack(hero.AttackValue);
 
-                        if (enemy.Health <= 0)
+                        if (enemy.Health < 0)
                         {
-                            hero.AddVictoryPoints(1);
-
-                            if (hero.VictoryPoints >= 5)
+                            if (hero is Hero specificHero) // Esto es para asegurarme de que es un Heroe
                             {
-                                hero.Cure();
+                                specificHero.AddtVP(1);
+
+                                if (specificHero.VictoryPoints >= 5)
+                                {
+                                    specificHero.Cure();
+                                }
                             }
                         }
                     }

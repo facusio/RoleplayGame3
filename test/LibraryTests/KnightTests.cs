@@ -24,8 +24,8 @@ public class KnightTests
         knight2.AddItem(catana);
         knight2.AddItem(bigshield);
 
-        knight2.ReceiveAttack(knight1.AttackValue);
-        knight1.ReceiveAttack(knight2.AttackValue);
+        knight2.RecieveAttack(knight1.AttackValue);
+        knight1.RecieveAttack(knight2.AttackValue);
         
         Assert.That(knight1.Health, Is.EqualTo(100));
         Assert.That(knight2.Health, Is.EqualTo(100));

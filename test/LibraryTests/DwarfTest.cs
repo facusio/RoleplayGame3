@@ -26,7 +26,7 @@ public class DwarfTests
         minidwarf.AddItem(helmetlvl2);
         
         // Act
-        minidwarf.ReceiveAttack(brokk.AttackValue);
+        minidwarf.RecieveAttack(brokk.AttackValue);
         
         // Assert
         Assert.That(minidwarf.Health, Is.EqualTo(86));

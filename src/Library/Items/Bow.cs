@@ -2,7 +2,7 @@ namespace Ucu.Poo.RoleplayGame;
 
 public class Bow: IAttackItem
 {
-    public int AttackValue
+    public int AttackValue 
     {
         get
         {

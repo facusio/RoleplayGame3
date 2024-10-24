@@ -25,8 +25,8 @@ public class WizardTests
         wizard2.AddItem(spellBook2);
 
         // Act
-        wizard1.ReceiveAttack(wizard2.AttackValue);
-        wizard2.ReceiveAttack(wizard1.AttackValue);
+        wizard1.RecieveAttack(wizard2.AttackValue);
+        wizard2.RecieveAttack(wizard1.AttackValue);
 
         // Assert - Ninguno deberría recibir daño, ya que AttackValue es igual a DefenseValue
         Assert.That(wizard1.Health, Is.EqualTo(100));

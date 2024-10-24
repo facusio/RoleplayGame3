@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Ucu.Poo.RoleplayGame;
 using Library;
+using Library.Characters;
 
 namespace LibraryTests;
 
@@ -11,7 +12,7 @@ public class EncounterTests
     public void HeroesAreAlive_ReturnsTrue_WhenAnyHeroIsAlive()
     {
         // Arrange
-        var heroes = new List<IHero>
+        var heroes = new List<Hero>
         {
             new Archer("Archer1"), // Proporciona el nombre al crear el Archer
             new Dwarf("Dwarf1") { Health = 0 } // Suponiendo que Dwarf también tiene un constructor que acepta un nombre
@@ -33,7 +34,7 @@ public class EncounterTests
     public void HeroesAreAlive_ReturnsFalse_WhenNoHeroIsAlive()
     {
         // Arrange
-        var heroes = new List<IHero>
+        var heroes = new List<Hero>
         {
             new Archer("Archer1") { Health = 0 }, // Proporciona el nombre y establece la salud a 0
             new Dwarf("Dwarf1") { Health = 0 }
@@ -55,7 +56,7 @@ public class EncounterTests
     public void EnemiesAreAlive_ReturnsTrue_WhenAnyEnemyIsAlive()
     {
         // Arrange
-        var heroes = new List<IHero>
+        var heroes = new List<Hero>
         {
             new Archer("Archer1") { Health = 10 }
         };
@@ -77,7 +78,7 @@ public class EncounterTests
     public void EnemiesAreAlive_ReturnsFalse_WhenNoEnemyIsAlive()
     {
         // Arrange
-        var heroes = new List<IHero>
+        var heroes = new List<Hero>
         {
             new Archer("Archer1") { Health = 10 }
         };
@@ -97,11 +98,11 @@ public class EncounterTests
 
     [Test]
     public void DoEncounter_HeroesGainVictoryPoints_WhenEnemyIsDefeated()
-    {
+    { 
         // Arrange
         var hero = new Archer("Archer1") { Health = 10, AttackValue = 5 }; // Proporciona el nombre
         var enemy = new Enemy("Goblin", 1); // Proporciona el nombre y los puntos de victoria
-        var heroes = new List<IHero> { hero };
+        var heroes = new List<Hero> { hero };
         var enemies = new List<Enemy> { enemy };
         var encounter = new Encounter(heroes, enemies);
 
@@ -117,9 +118,9 @@ public class EncounterTests
     {
         // Arrange
         var hero = new Archer("Archer1") { Health = 10, AttackValue = 10 }; // Proporciona el nombre
-        hero.AddVictoryPoints(5); // Simula que el héroe alcanza 5 puntos de victoria
+        hero.AddtVP(5); // Simula que el héroe alcanza 5 puntos de victoria
         var enemy = new Enemy("Goblin", 10);
-        var heroes = new List<IHero> { hero };
+        var heroes = new List<Hero> { hero };
         var enemies = new List<Enemy> { enemy };
         var encounter = new Encounter(heroes, enemies);
 
